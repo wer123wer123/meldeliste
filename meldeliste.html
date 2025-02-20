@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meldeliste für Schüler</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        input, button { margin: 10px; padding: 8px; }
+        ul { list-style: none; padding: 0; }
+        li { background: #f4f4f4; margin: 5px; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Meldeliste für Schüler</h2>
+    <input type="text" id="nameInput" placeholder="Dein Name">
+    <button onclick="addStudent()">Eintragen</button>
+    <ul id="studentList"></ul>
+    
+    <script>
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+        const studentList = document.getElementById('studentList');
+        
+        function renderList() {
+            studentList.innerHTML = '';
+            students.forEach((name, index) => {
+                const li = document.createElement('li');
+                li.textContent = name;
+                li.onclick = () => removeStudent(index);
+                studentList.appendChild(li);
+            });
+            localStorage.setItem('students', JSON.stringify(students));
+        }
+        
+        function addStudent() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (name && !students.includes(name)) {
+                students.push(name);
+                document.getElementById('nameInput').value = '';
+                renderList();
+            }
+        }
+        
+        function removeStudent(index) {
+            students.splice(index, 1);
+            renderList();
+        }
+        
+        renderList();
+    </script>
+</body>
+</html>
