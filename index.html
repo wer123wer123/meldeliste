@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #007bff; /* blauer Hintergrund */
+            background-color: #f8f9fa; /* Hintergrundfarbe des gesamten Body */
             text-align: center;
             padding: 20px;
         }
@@ -58,13 +58,12 @@
         }
 
         li {
-            background: #007bff; /* blauer Hintergrund für die Bläschen */
-            color: white;
+            background: #ffffff; /* Hintergrundfarbe der Bläschen */
             display: inline-block;
             padding: 10px 15px;
             margin: 5px;
-            border-radius: 50px; /* abgerundete Bläschen */
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 6px; /* Abgerundete Ecken für die Bläschen */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Schattierung für die Bläschen */
             font-size: 16px;
             cursor: pointer;
             transition: transform 0.2s, background 0.3s;
@@ -72,14 +71,8 @@
         }
 
         li:hover {
-            transform: scale(1.05);
-            background: #0056b3;
-        }
-
-        .instructions {
-            font-size: 14px;
-            color: #ffffff; /* weißer Text für die Anweisung */
-            margin-top: 10px;
+            transform: scale(1.05); /* Vergrößerung bei Hover */
+            background: #e9ecef; /* Hintergrundfarbe bei Hover */
         }
     </style>
 </head>
@@ -88,9 +81,6 @@
         <h2>Meldeliste für Schüler*innen</h2>
         <input type="text" id="nameInput" placeholder="Dein Name" onkeypress="handleKeyPress(event)">
         <button onclick="addStudent()">Eintragen</button>
-        <div class="instructions">
-            Trage deinen Namen ein und bestätige mit der Enter-Taste. Zum Entfernen deines Namens klicke ihn einmal an.
-        </div>
         <ul id="studentList"></ul>
     </div>
     
