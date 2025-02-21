@@ -14,6 +14,7 @@
             overflow: hidden; /* Verhindert Scrollen durch Bläschen */
             position: relative;
             height: 100vh; /* Füllt den gesamten Bildschirm */
+            font-size: 18px; /* Schriftgröße für den Body vergrößert */
         }
 
         /* Container anpassen */
@@ -32,7 +33,7 @@
 
         h2 {
             color: #333;
-            font-size: 22px;
+            font-size: 28px; /* Schriftgröße für h2 vergrößert */
         }
 
         /* Eingabefelder untereinander anordnen und Maximallänge auf 25 Zeichen setzen */
@@ -42,7 +43,7 @@
             margin: 10px 0;
             border: 2px solid #ced4da;
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 18px; /* Schriftgröße des Input-Feldes vergrößert */
             text-align: center;
             max-length: 25px; /* Maximale Länge auf 25 Zeichen setzen */
             box-sizing: border-box; /* Verhindert Überlauf */
@@ -53,7 +54,7 @@
             border: none;
             background-color: #007bff;
             color: white;
-            font-size: 16px;
+            font-size: 18px; /* Schriftgröße des Buttons vergrößert */
             cursor: pointer;
             border-radius: 6px;
             transition: background 0.3s;
@@ -63,18 +64,16 @@
             background-color: #0056b3;
         }
 
-        /* Der alles entfernen Button oben rechts */
+        /* Der alles entfernen Button rechts neben dem Eintragen-Button */
         .clear-button {
-            position: absolute;
-            top: 20px; /* Button oben */
-            right: 20px; /* Button ganz rechts */
+            padding: 7px 15px; /* 25% kleiner */
+            font-size: 14px; /* Kleinere Schrift */
             background-color: #dc3545;
-            padding: 5px 10px; /* Button 50% kleiner */
-            font-size: 12px; /* Kleinere Schrift */
             border-radius: 6px;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-left: 10px; /* Abstand zwischen den Buttons */
         }
 
         .clear-button:hover {
@@ -97,7 +96,7 @@
             margin: 5px 0;
             border-radius: 6px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            font-size: 16px;
+            font-size: 18px; /* Schriftgröße der Listenelemente vergrößert */
             cursor: pointer;
             transition: transform 0.2s, background 0.3s;
             white-space: nowrap;
@@ -110,11 +109,20 @@
             background: #e9ecef;
         }
 
-        /* Text unter dem Button */
-        .instructions {
+        /* Nachricht unter dem großen Eintrag */
+        .wait-message {
             font-size: 14px;
-            color: #555;
-            margin-top: 15px;
+            color: #888; /* Graue Farbe */
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* Warte-Nummer Styling */
+        .wait-number {
+            font-size: 18px; /* Gleiche Größe wie der Text in der Liste */
+            color: #333;     /* Gleiche Farbe wie der Haupttext */
+            text-align: center;
+            margin-top: 5px;
         }
 
         /* Animation für die Bläschen */
@@ -158,6 +166,16 @@
         .bubble:nth-child(5) { width: 30px; height: 30px; animation-duration: 45s; }
         .bubble:nth-child(6) { width: 25px; height: 25px; animation-duration: 65s; }
 
+        /* Styling für das Datum und Uhrzeit oben rechts */
+        .datetime {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 18px; /* Schriftgröße für die Datumsanzeige vergrößert */
+            font-weight: bold;
+            color: #333;
+            z-index: 3;
+        }
     </style>
 </head>
 <body>
@@ -169,16 +187,17 @@
     <div class="bubble" style="top: 60%; left: 60%;"></div>
     <div class="bubble" style="top: 80%; left: 20%;"></div>
 
+    <!-- Anzeige für Datum und Uhrzeit -->
+    <div class="datetime" id="datetime"></div>
+
     <div class="container">
         <h2>Meldeliste für Schüler*innen</h2>
         <input type="text" id="nameInput" placeholder="Dein Name" maxlength="25" onkeypress="handleKeyPress(event)">
         <button onclick="addStudent()">Eintragen</button>
-        
-        <!-- Text unter dem Button -->
-        <p class="instructions">Trage deinen Namen ein und bestätige mit Enter oder mit der Enter-Taste, um deinen Namen auszutragen, klicke ihn einmal an.</p>
-        
-        <!-- Alles entfernen Button oben rechts -->
         <button class="clear-button" onclick="clearList()">Alles Entfernen</button>
+        
+        <!-- Text unter dem Button verändert und angepasst -->
+        <p class="wait-message">Trage deinen Namen ein und bestätige mit Enter oder mit der Enter-Taste, um deinen Namen auszutragen, klicke ihn einmal an.</p>
         
         <!-- Liste der Schüler*innen, die jetzt scrollbar ist -->
         <ul id="studentList"></ul>
@@ -193,9 +212,26 @@
             students.forEach((name, index) => {
                 const li = document.createElement('li');
                 li.textContent = name;
+
+                // Ab dem fünften Element: Warte-Nummer hinzufügen und fortlaufend zählen
+                if (index >= 4) {
+                    const waitMessage = document.createElement('p');
+                    waitMessage.className = 'wait-message';
+                    waitMessage.textContent = "Der nächste Mitarbeiter ist schon für Sie reserviert...";
+                    
+                    // Erstelle die Warte-Nummer (beginnend bei 5)
+                    const waitNumber = document.createElement('p');
+                    waitNumber.className = 'wait-number';
+                    waitNumber.textContent = `Wartenummer: ${index - 4 + 5}`; // Beginnt bei 5 (index - 4 + 5)
+                    
+                    li.appendChild(waitMessage);
+                    li.appendChild(waitNumber);
+                }
+
                 li.onclick = () => removeStudent(index);
                 studentList.appendChild(li);
             });
+
             localStorage.setItem('students', JSON.stringify(students));
         }
 
@@ -223,6 +259,24 @@
                 addStudent();
             }
         }
+
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                weekday: 'short',
+                day: '2-digit',
+                month: 'short',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            };
+            // Verwende die UTC-Methode
+            const formattedDateTime = now.toLocaleString('de-DE', options) + ' UTC';
+            document.getElementById('datetime').textContent = formattedDateTime;
+        }
+
+        setInterval(updateDateTime, 60000);  // Aktualisiere alle 60 Sekunden
+        updateDateTime();  // Initiale Anzeige
 
         renderList();
     </script>
