@@ -250,8 +250,16 @@
         }
 
         function clearList() {
-            students = [];
-            renderList();
+            const password = prompt("Bitte Passwort eingeben, um alles zu entfernen:");
+            const correctPassword = "0";  // Passwort ist jetzt 0
+
+            if (password === correctPassword) {
+                students = [];
+                renderList();  // Liste wird gerendert und zurückgesetzt
+                alert("Die Liste wurde erfolgreich gelöscht.");
+            } else {
+                alert("Falsches Passwort. Die Liste bleibt erhalten.");
+            }
         }
 
         function handleKeyPress(event) {
@@ -261,23 +269,22 @@
         }
 
         function updateDateTime() {
-    const now = new Date();
-    const options = {
-        weekday: 'short',
-        day: '2-digit',
-        month: 'short',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-    };
-    // Verwende die UTC-Methode
-    const formattedDateTime = now.toLocaleString('de-DE', options) + ' UTC';
-    document.getElementById('datetime').textContent = formattedDateTime;
-}
+            const now = new Date();
+            const options = {
+                weekday: 'short',
+                day: '2-digit',
+                month: 'short',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            };
+            // Verwende die UTC-Methode
+            const formattedDateTime = now.toLocaleString('de-DE', options) + ' UTC';
+            document.getElementById('datetime').textContent = formattedDateTime;
+        }
 
-setInterval(updateDateTime, 60000);  // Aktualisiere alle 60 Sekunden
-updateDateTime();  // Initiale Anzeige
-
+        setInterval(updateDateTime, 60000);  // Aktualisiere alle 60 Sekunden
+        updateDateTime();  // Initiale Anzeige
 
         renderList();
     </script>
