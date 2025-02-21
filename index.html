@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meldeliste für Schüler*innen</title>
     <style>
+        /* Hintergrundfarbe ändern */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #e3f2fd; /* Helles Blau */
             text-align: center;
             padding: 20px;
+            overflow: hidden; /* Verhindert Scrollen durch Bläschen */
+            position: relative;
         }
 
+        /* Container anpassen */
         .container {
             background: white;
             max-width: 400px;
@@ -26,14 +30,16 @@
             font-size: 22px;
         }
 
+        /* Eingabefelder untereinander anordnen und Maximallänge von 30 Zeichen */
         input {
-            width: calc(100% - 24px);
+            width: 100%;
             padding: 10px;
             margin: 10px 0;
             border: 2px solid #ced4da;
             border-radius: 6px;
             font-size: 16px;
             text-align: center;
+            max-length: 30px;
         }
 
         button {
@@ -74,12 +80,48 @@
             transform: scale(1.05);
             background: #e9ecef;
         }
+
+        /* Animation für die Bläschen */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background-color: #003366; /* Dunkelblau */
+            animation: float 10s infinite linear;
+        }
+
+        /* Bewegung der Bläschen über den Bildschirm */
+        @keyframes float {
+            0% {
+                transform: translateX(-10vw) translateY(-10vh);
+                opacity: 0;
+            }
+            50% {
+                transform: translateX(50vw) translateY(30vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw) translateY(-20vh);
+                opacity: 0;
+            }
+        }
+
+        /* Unterschiedliche Größen der Bläschen */
+        .bubble:nth-child(1) { width: 50px; height: 50px; animation-duration: 12s; }
+        .bubble:nth-child(2) { width: 70px; height: 70px; animation-duration: 14s; }
+        .bubble:nth-child(3) { width: 60px; height: 60px; animation-duration: 10s; }
+        .bubble:nth-child(4) { width: 80px; height: 80px; animation-duration: 16s; }
     </style>
 </head>
 <body>
+    <!-- Bläschen, die über den Bildschirm fließen -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
     <div class="container">
         <h2>Meldeliste für Schüler*innen</h2>
-        <input type="text" id="nameInput" placeholder="Dein Name" onkeypress="handleKeyPress(event)">
+        <input type="text" id="nameInput" placeholder="Dein Name" maxlength="30" onkeypress="handleKeyPress(event)">
         <button onclick="addStudent()">Eintragen</button>
         <ul id="studentList"></ul>
     </div>
