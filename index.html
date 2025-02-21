@@ -75,9 +75,9 @@
             background: #e9ecef;
         }
 
-        .info-text {
+        .instructions {
             font-size: 14px;
-            color: #555;
+            color: #6c757d;
             margin-top: 10px;
         }
     </style>
@@ -87,7 +87,9 @@
         <h2>Meldeliste für Schüler*innen</h2>
         <input type="text" id="nameInput" placeholder="Dein Name" onkeypress="handleKeyPress(event)">
         <button onclick="addStudent()">Eintragen</button>
-        <p class="info-text">Trage deinen Namen ein und bestätige mit der Enter-Taste. Zum Entfernen deines Namens, klicke ihn einmal an.</p>
+        <div class="instructions">
+            Trage deinen Namen ein und bestätige mit der Enter-Taste. Zum Entfernen deines Namens klicke ihn einmal an.
+        </div>
         <ul id="studentList"></ul>
     </div>
     
