@@ -10,6 +10,22 @@
             background-color: #e3f2fd;
             text-align: center;
             padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animierte Blasen */
+        .bubble {
+            position: absolute;
+            background-color: rgba(0, 50, 150, 0.2);
+            border-radius: 50%;
+            animation: float 10s infinite alternate ease-in-out;
+            opacity: 0.5;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-50px); }
         }
 
         .container {
@@ -19,6 +35,8 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
         }
 
         h2 {
@@ -79,6 +97,27 @@
     </style>
 </head>
 <body>
+    <script>
+        // Blasen im Hintergrund generieren
+        function createBubbles() {
+            const numBubbles = 15;
+            for (let i = 0; i < numBubbles; i++) {
+                let bubble = document.createElement("div");
+                bubble.classList.add("bubble");
+                let size = Math.random() * 50 + 20; // Größe zwischen 20px und 70px
+                bubble.style.width = size + "px";
+                bubble.style.height = size + "px";
+                bubble.style.left = Math.random() * 100 + "vw";
+                bubble.style.top = Math.random() * 100 + "vh";
+                bubble.style.animationDuration = (Math.random() * 5 + 5) + "s";
+                bubble.style.animationDelay = Math.random() * 5 + "s";
+                document.body.appendChild(bubble);
+            }
+        }
+
+        createBubbles();
+    </script>
+
     <div class="container">
         <h2>Meldeliste für Schüler*innen</h2>
         <input type="text" id="nameInput" placeholder="Dein Name" onkeypress="handleKeyPress(event)">
