@@ -23,6 +23,8 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative; /* Container bleibt vor den Bläschen */
+            z-index: 2;
         }
 
         h2 {
@@ -89,40 +91,53 @@
         .bubble {
             position: absolute;
             border-radius: 50%;
-            background-color: #003366; /* Dunkelblau */
-            animation: float 25s infinite linear; /* Langsame Bewegung */
-            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3), inset 0 0 8px rgba(255, 255, 255, 0.4); /* Dreidimensionaler Touch und Glanzpunkt */
+            background-color: rgba(0, 51, 102, 0.6); /* Helleres Blau */
+            animation: float 45s infinite linear; /* Sehr langsame Bewegung */
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3), inset 0 0 8px rgba(255, 255, 255, 0.6); /* 3D-Effekt und Glanzpunkt */
         }
 
         /* Bewegung der Bläschen über den Bildschirm */
         @keyframes float {
             0% {
                 transform: translateX(-10vw) translateY(-10vh);
-                opacity: 0;
+                opacity: 0.5;
+            }
+            25% {
+                transform: translateX(80vw) translateY(10vh);
+                opacity: 0.7;
             }
             50% {
-                transform: translateX(50vw) translateY(30vh);
-                opacity: 1;
+                transform: translateX(50vw) translateY(50vh);
+                opacity: 0.9;
+            }
+            75% {
+                transform: translateX(20vw) translateY(70vh);
+                opacity: 0.7;
             }
             100% {
-                transform: translateX(100vw) translateY(-20vh);
-                opacity: 0;
+                transform: translateX(-10vw) translateY(90vh);
+                opacity: 0.5;
             }
         }
 
         /* Unterschiedliche Größen der Bläschen */
-        .bubble:nth-child(1) { width: 40px; height: 40px; animation-duration: 30s; }
-        .bubble:nth-child(2) { width: 50px; height: 50px; animation-duration: 35s; }
-        .bubble:nth-child(3) { width: 45px; height: 45px; animation-duration: 25s; }
-        .bubble:nth-child(4) { width: 60px; height: 60px; animation-duration: 40s; }
+        .bubble:nth-child(1) { width: 30px; height: 30px; animation-duration: 50s; }
+        .bubble:nth-child(2) { width: 25px; height: 25px; animation-duration: 55s; }
+        .bubble:nth-child(3) { width: 35px; height: 35px; animation-duration: 60s; }
+        .bubble:nth-child(4) { width: 40px; height: 40px; animation-duration: 70s; }
+        .bubble:nth-child(5) { width: 30px; height: 30px; animation-duration: 45s; }
+        .bubble:nth-child(6) { width: 25px; height: 25px; animation-duration: 65s; }
+
     </style>
 </head>
 <body>
-    <!-- Bläschen, die hinter dem Eingabefeld fließen -->
-    <div class="bubble" style="top: 0; left: 0;"></div>
-    <div class="bubble" style="top: 20%; left: 20%;"></div>
-    <div class="bubble" style="top: 40%; left: 40%;"></div>
+    <!-- Bläschen, die im Hintergrund fließen -->
+    <div class="bubble" style="top: 5%; left: 10%;"></div>
+    <div class="bubble" style="top: 20%; left: 50%;"></div>
+    <div class="bubble" style="top: 30%; left: 80%;"></div>
+    <div class="bubble" style="top: 50%; left: 30%;"></div>
     <div class="bubble" style="top: 60%; left: 60%;"></div>
+    <div class="bubble" style="top: 80%; left: 20%;"></div>
 
     <div class="container">
         <h2>Meldeliste für Schüler*innen</h2>
