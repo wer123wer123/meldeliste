@@ -76,4 +76,57 @@
         }
 
         .info-text {
-            font-size: 14px
+            font-size: 14px;
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Meldeliste für Schüler*innen</h2>
+        <input type="text" id="nameInput" placeholder="Dein Name" onkeypress="handleKeyPress(event)">
+        <button onclick="addStudent()">Eintragen</button>
+        <p class="info-text">Trage deinen Namen ein und bestätige mit der Enter-Taste. Zum Entfernen deines Namens, klicke ihn einmal an.</p>
+        <ul id="studentList"></ul>
+    </div>
+    
+    <script>
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+        const studentList = document.getElementById('studentList');
+
+        function renderList() {
+            studentList.innerHTML = '';
+            students.forEach((name, index) => {
+                const li = document.createElement('li');
+                li.textContent = name;
+                li.onclick = () => removeStudent(index);
+                studentList.appendChild(li);
+            });
+            localStorage.setItem('students', JSON.stringify(students));
+        }
+
+        function addStudent() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (name && !students.includes(name)) {
+                students.push(name);
+                document.getElementById('nameInput').value = '';
+                renderList();
+            }
+        }
+
+        function removeStudent(index) {
+            students.splice(index, 1);
+            renderList();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                addStudent();
+            }
+        }
+
+        renderList();
+    </script>
+</body>
+</html>
