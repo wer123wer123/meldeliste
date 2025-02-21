@@ -87,6 +87,13 @@
             background: #e9ecef;
         }
 
+        /* Text unter dem Button */
+        .instructions {
+            font-size: 14px;
+            color: #555;
+            margin-top: 15px;
+        }
+
         /* Animation für die Bläschen */
         .bubble {
             position: absolute;
@@ -143,6 +150,10 @@
         <h2>Meldeliste für Schüler*innen</h2>
         <input type="text" id="nameInput" placeholder="Dein Name" maxlength="25" onkeypress="handleKeyPress(event)">
         <button onclick="addStudent()">Eintragen</button>
+        
+        <!-- Text unter dem Button -->
+        <p class="instructions">Trage deinen Namen ein und bestätige mit Enter oder mit der Enter-Taste, um deinen Namen auszutragen, klicke ihn einmal an.</p>
+        
         <ul id="studentList"></ul>
     </div>
     
