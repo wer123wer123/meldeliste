@@ -60,6 +60,24 @@
             background-color: #0056b3;
         }
 
+        /* Der alles entfernen Button oben rechts */
+        .clear-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #dc3545;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .clear-button:hover {
+            background-color: #c82333;
+        }
+
         /* Die Liste der Schüler*innen untereinander anzeigen */
         ul {
             list-style: none;
@@ -156,6 +174,9 @@
         <!-- Text unter dem Button -->
         <p class="instructions">Trage deinen Namen ein und bestätige mit Enter oder mit der Enter-Taste, um deinen Namen auszutragen, klicke ihn einmal an.</p>
         
+        <!-- Alles entfernen Button -->
+        <button class="clear-button" onclick="clearList()">Alles Entfernen</button>
+        
         <!-- Liste der Schüler*innen, die jetzt scrollbar ist -->
         <ul id="studentList"></ul>
     </div>
@@ -189,6 +210,11 @@
             renderList();
         }
 
+        function clearList() {
+            students = [];
+            renderList();
+        }
+
         function handleKeyPress(event) {
             if (event.key === "Enter") {
                 addStudent();
@@ -199,4 +225,3 @@
     </script>
 </body>
 </html>
-
