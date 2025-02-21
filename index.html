@@ -63,12 +63,11 @@
             background-color: #0056b3;
         }
 
-        /* Der alles entfernen Button unter dem langen Text, aber über den Eingabefeldern */
+        /* Der alles entfernen Button oben rechts */
         .clear-button {
             position: absolute;
-            bottom: 100px; /* Button weiter unten */
-            left: 50%;
-            transform: translateX(-50%); /* Button zentrieren */
+            top: 20px; /* Button oben */
+            right: 20px; /* Button ganz rechts */
             background-color: #dc3545;
             padding: 5px 10px; /* Button 50% kleiner */
             font-size: 12px; /* Kleinere Schrift */
@@ -178,7 +177,7 @@
         <!-- Text unter dem Button -->
         <p class="instructions">Trage deinen Namen ein und bestätige mit Enter oder mit der Enter-Taste, um deinen Namen auszutragen, klicke ihn einmal an.</p>
         
-        <!-- Alles entfernen Button unter dem langen Text, aber über den Eingabefeldern -->
+        <!-- Alles entfernen Button oben rechts -->
         <button class="clear-button" onclick="clearList()">Alles Entfernen</button>
         
         <!-- Liste der Schüler*innen, die jetzt scrollbar ist -->
