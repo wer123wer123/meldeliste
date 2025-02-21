@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #e3f2fd;
             text-align: center;
             padding: 20px;
         }
@@ -59,19 +59,21 @@
 
         li {
             background: #ffffff;
-            display: inline-block;
-            padding: 10px 15px;
-            margin: 5px;
+            width: 280px; /* Einheitliche Breite */
+            padding: 10px;
+            margin: 5px auto;
             border-radius: 6px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
             font-size: 16px;
             cursor: pointer;
             transition: transform 0.2s, background 0.3s;
             white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         li:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
             background: #e9ecef;
         }
     </style>
