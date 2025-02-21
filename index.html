@@ -13,6 +13,7 @@
             padding: 20px;
             overflow: hidden; /* Verhindert Scrollen durch Bläschen */
             position: relative;
+            height: 100vh; /* Füllt den gesamten Bildschirm */
         }
 
         /* Container anpassen */
@@ -25,6 +26,8 @@
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             position: relative; /* Container bleibt vor den Bläschen */
             z-index: 2;
+            max-height: calc(100vh - 60px); /* Platz für den Button unten */
+            overflow-y: auto; /* Scrollt, wenn zu viel Inhalt */
         }
 
         h2 {
@@ -60,10 +63,10 @@
             background-color: #0056b3;
         }
 
-        /* Der alles entfernen Button oben rechts */
+        /* Der alles entfernen Button unten rechts */
         .clear-button {
             position: absolute;
-            top: 10px;
+            bottom: 10px;
             right: 10px;
             background-color: #dc3545;
             padding: 5px 10px; /* Button 50% kleiner */
