@@ -66,6 +66,8 @@
             padding: 0;
             margin-top: 20px;
             text-align: left;
+            max-height: 400px; /* Maximale Höhe der Liste */
+            overflow-y: auto; /* Ermöglicht das Scrollen bei vielen Einträgen */
         }
 
         li {
@@ -154,6 +156,7 @@
         <!-- Text unter dem Button -->
         <p class="instructions">Trage deinen Namen ein und bestätige mit Enter oder mit der Enter-Taste, um deinen Namen auszutragen, klicke ihn einmal an.</p>
         
+        <!-- Liste der Schüler*innen, die jetzt scrollbar ist -->
         <ul id="studentList"></ul>
     </div>
     
